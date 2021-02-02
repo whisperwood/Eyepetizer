@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="item"
+            type="com.example.playactivity.net.RelateVideoResponse.RelateVideoItemBean" />
+
+        <import type="com.example.base.network.utils.TimeUtils"/>
+
+        <import type="android.view.View"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:background="@color/text_gray"
+        android:paddingLeft="@dimen/dp_13"
+        android:paddingRight="@dimen/dp_13">
+
+        <com.example.base.network.widget.CircleImageView
+            android:id="@+id/ivCover"
+            android:layout_width="175dp"
+            android:layout_height="100dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:es_shape_type="rectangle"
+            app:ease_radius="@dimen/dp_4"
+            imgUrl="@{item.data.cover.feed}"
+            tools:background="@color/light_white"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:layout_marginBottom="13dp"/>
+
+        <TextView
+            android:id="@+id/tvDuration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            tools:text="03:27"
+            android:text="@{TimeUtils.INSTANCE.duration2Time(item.data.duration)}"
+            android:paddingLeft="@dimen/dp_3"
+            android:paddingRight="@dimen/dp_3"
+            android:paddingTop="@dimen/dp_1"
+            android:paddingBottom="@dimen/dp_1"
+            android:background="@drawable/shape_black_roundsmall"
+            android:textSize="@dimen/font_12sp"
+            android:layout_margin="@dimen/dp_5"
+            app:layout_constraintRight_toRightOf="@id/ivCover"
+            app:layout_constraintBottom_toBottomOf="@id/ivCover"/>
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            app:layout_constraintLeft_toRightOf="@id/ivCover"
+            app:layout_constraintTop_toTopOf="@id/ivCover"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginLeft="@dimen/dp_12"
+            android:layout_marginTop="@dimen/dp_8"
+            android:textSize="@dimen/font_14sp"
+            tools:text="纯美的新西兰星空"
+            android:text="@{item.data.title}"/>
+
+        <TextView
+            android:id="@+id/tvtag"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/half_white"
+            app:layout_constraintLeft_toRightOf="@id/ivCover"
+            app:layout_constraintBottom_toBottomOf="@id/ivCover"
+            app:layout_constraintRight_toLeftOf="@id/ivDownload"
+            android:layout_marginRight="@dimen/dp_10"
+            android:layout_marginLeft="@dimen/dp_12"
+            android:layout_marginBottom="@dimen/dp_8"
+            android:textSize="@dimen/font_12sp"
+            tools:text="#旅行 / 开眼精选"
+            android:text='@{"#" + item.data.category}'/>
+
+        <ImageView
+            android:id="@+id/ivDownload"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@mipmap/ic_action_share"
+            android:alpha="0.6"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/tvtag"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
